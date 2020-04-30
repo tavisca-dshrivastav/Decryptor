@@ -1,0 +1,24 @@
+plugins {
+	id 'application'
+	id 'org.openjfx.javafxplugin' version '0.0.8'
+}
+
+repositories {
+	mavenCentral()
+}
+
+javafx {
+	version = "11.0.2"
+	modules = [ 'javafx.controls' ]
+}
+
+mainClassName = 'com.tavisca.utility.MainClass'
+
+jar {
+	manifest {
+		attributes 'Main-Class': 'com.tavisca.utility.MainClass'
+	}
+	from {
+		configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+	}
+}
